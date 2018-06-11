@@ -646,3 +646,27 @@ function activeSettingMenu(indexPath){
     }
 }
 queryAddins(category)
+if ($app.env !== $env.app) return;
+(async function checkUpdate() {
+  const version = 1.1
+  const versionURL = 'https://raw.githubusercontent.com/MapleRen/JSBoxPractice/master/NeteaseNews/version'
+  const updateURL = `jsbox://install?url=${encodeURI('https://raw.githubusercontent.com/MapleRen/JSBoxPractice/master/NeteaseNews/NeteaseNews.js')}`
+  let resp = await $http.get(versionURL)
+  $console.info(resp);
+  if (version == resp.data) return
+  $ui.action({
+    title: '更新提示',
+    message: '发现新版本, 是否更新 ?',
+    actions: [{
+        title: '更新',
+        handler: () => {
+          $app.openURL(updateURL)
+          $ui.toast('正在安装更新...')
+        }
+      },
+      {
+        title: '取消'
+      }
+    ]
+  })
+})()
