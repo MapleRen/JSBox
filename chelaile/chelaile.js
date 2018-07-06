@@ -184,6 +184,7 @@ async function  getStsData(){
     }
     $console.info(sdata);
     $("stnDetailList").data=sdata;
+    $("stnDetailList").endFetchingMore()
     $ui.loading(false);
 }
 
