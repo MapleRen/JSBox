@@ -385,6 +385,7 @@ function stationDetail(sdata,sname){
                             var direc = sender.index;//方向
                             direction=direc;
                             $cache.set("direction", direc);
+                            getStsData();
                         }
                         }
                     }]
