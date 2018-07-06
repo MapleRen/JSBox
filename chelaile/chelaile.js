@@ -138,7 +138,7 @@ $ui.render({
 })
 
 async function  getStsData(){
-    $console.info("获取明细")
+    $ui.loading(true);
     var resp=await $http.get(getstationDetailUrl)
     var data=JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""))
     var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
@@ -184,6 +184,7 @@ async function  getStsData(){
     }
     $console.info(sdata);
     $("stnDetailList").data=sdata;
+    $ui.loading(false);
 }
 
 
@@ -285,7 +286,7 @@ function getStsDetail(stsdata){
                 text:otherTime
             },
             endSn:{
-                text:ines[i].line.endSn
+                text:lines[i].line.endSn
             }
         }
         sdata.push(obj);
