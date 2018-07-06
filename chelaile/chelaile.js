@@ -175,6 +175,9 @@ async function  getStsData(){
             },
             otTime:{
                 text:otherTime
+            },
+            endSn:{
+                text:ines[i].line.endSn
             }
         }
         sdata.push(obj);
@@ -280,6 +283,9 @@ function getStsDetail(stsdata){
             },
             otTime:{
                 text:otherTime
+            },
+            endSn:{
+                text:ines[i].line.endSn
             }
         }
         sdata.push(obj);
@@ -326,7 +332,7 @@ function stationDetail(sdata,sname){
                 },{
                     type:"label",
                     props:{
-                        id:"wokingtime",
+                        id:"endSn",
                         font:$font(10),
                         textColor:$color("lightGray"),
                         autoFontSize:false
@@ -395,7 +401,9 @@ function stationDetail(sdata,sname){
             },
             layout:$layout.fill,
             events: {
-                
+                pulled: function(sender) {
+                    getStsData();
+                },
             }
         }]
     })
