@@ -438,8 +438,8 @@ function setUrl(lat,lng){
         url: getCityCodeUrl,
         handler: function(resp) {
             var data = resp.data.replace("**YGKJ","").replace("YGKJ##","");
-            cityId=data.data.localCity.cityId;
-            cityName=data.data.localCity.cityName;
+            cityId=data.jsonr.data.localCity.cityId;
+            cityName=data.jsonr.data.localCity.cityName;
             getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId="+cityId+"&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
             $console.info(cityName+":"+cityId);
         }
@@ -450,7 +450,6 @@ function setUrl(lat,lng){
     let resp = await $http.get(versionURL)
     const jsURL='https://raw.githubusercontent.com/MapleRen/JSBox/master/chelaile/chelaile.js&icon=icon_087.png&types=1&version='+resp.data.version+'&name=车来了&author=Ren'
     const updateURL = `jsbox://install?url=${encodeURI(jsURL)}`
-    $console.info(jsURL);
     if (version >= resp.data.version) return
     $ui.action({
       title: '更新提示',
