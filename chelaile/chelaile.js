@@ -1,5 +1,7 @@
+const version = 1.00; //版本号
 var getCityCodeUrl;
 var getNearStsUrl;
+var getstationDetailUrl;
 var lat;
 var lng;
 var datalist=[]
@@ -116,9 +118,9 @@ $ui.render({
                 $ui.loading(true);
                 var stsName=data.nearSts_sn.text;
                 var id=data.id.text;
-                var url=encodeURI("https://api.chelaile.net.cn/bus/stop!stationDetail.action?&destSId=-1&gpsAccuracy=65.000000&lorder=1&stats_act=refresh&stationId="+id+"&cityId=008&sign=&stats_referer=nearby&s=IOS&dpi=3&push_open=1&v=5.50.4");
+                getstationDetailUrl="https://api.chelaile.net.cn/bus/stop!stationDetail.action?&destSId=-1&gpsAccuracy=65.000000&lorder=1&stats_act=refresh&stationId="+id+"&cityId=008&sign=&stats_referer=nearby&s=IOS&dpi=3&push_open=1&v=5.50.4";
                 $http.get({
-                    url: url,
+                    url: encodeURI(getstationDetailUrl),
                     handler: function(resp) {
                         $ui.loading(false);
                         var data = resp.data
@@ -135,6 +137,49 @@ $ui.render({
     }]
 })
 
+async function  getStsData(){
+    var resp=await $http.get(getstationDetailUrl)
+    var data=JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""))
+    var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
+    var stsname=data.jsonr.data.sn;
+    var sdata=[];
+    for(let i = 0; i < lines.length ; i++){
+        var stnStates=lines[i].stnStates;//下一班车集合
+        var arrivalTime="";
+        var otherTime="下一班时间";
+        
+        if(stnStates.length>0){
+            arrivalTime=getArrivalTime(stnStates[0].arrivalTime);
+        }else{
+            arrivalTime=lines[i].line.desc;
+        }
+        var obj={
+            lineName:{
+                text:lines[i].line.name+"路"
+            },
+            lineId:{
+                text:lines[i].line.lineId
+            },
+            wokingtime:{
+                text:"首 "+lines[i].line.firstTime + " 末 "+lines[i].line.lastTime
+            },
+            nextStName:{
+                text:"> 下一站·"+lines[i].nextStation.sn
+            },
+            nextStid:{
+                text:lines[i].nextStation.sId
+            },
+            ariTime:{
+                text:arrivalTime+""
+            },
+            otTime:{
+                text:otherTime
+            }
+        }
+        sdata.push(obj);
+    }
+    $console.info(sdata);
+}
 
 
 //刷新附近站点
@@ -244,12 +289,12 @@ function stationDetail(sdata,sname){
     $ui.push({
         props: {
             title: sname,
-            id:"stnDeatil"
+            id:"stnDeatilView"
         },
         views: [{
             type: "list",
             props: {
-                id: "stationDetail",
+                id: "stnDetailList",
                 rowHeight:80,
                 data:sdata,
                 bgcolor:$color("#f3f4f4"),
@@ -336,8 +381,9 @@ function stationDetail(sdata,sname){
                         },
                         events: {
                         changed: function(sender) {
-                            $("stnDeatil").endFetchingMore()
-                            var direc = sender.index
+                            $("stnDetailList").endFetchingMore()
+                            var direc = sender.index;//方向
+                            direction=direc;
                             $cache.set("direction", direc);
                         }
                         }
@@ -373,4 +419,28 @@ function setUrl(lat,lng){
     getCityCodeUrl="https://api.chelaile.net.cn/goocity/city!localCity.action?s=IOS&gpsAccuracy=65.000000&gpstype=wgs&push_open=1&vc=10554&lat="+lat+"&lng="+lng;
     getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId=008&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
 }
+(async function checkUpdate() {
+    const versionURL = 'https://raw.githubusercontent.com/MapleRen/JSBox/master/chelaile/versioninfo.json'
+    let resp = await $http.get(versionURL)
+    const jsURL='https://raw.githubusercontent.com/MapleRen/JSBox/master/chelaile/chelaile.js&icon=icon_087.png&types=1&version='+resp.data.version+'&author=Ren'
+    const updateURL = `jsbox://install?url=${encodeURI(jsURL)}`
+    $console.info(jsURL);
+    if (version >= resp.data.version) return
+    $ui.action({
+      title: '更新提示',
+      message: '发现新版本'+resp.data.version+', 是否更新 ?',
+      actions: [{
+          title: '更新',
+          handler: () => {
+            $app.openURL(updateURL)
+            $ui.toast('正在安装更新...')
+          }
+        },
+        {
+          title: '取消'
+        }
+      ]
+    })
+  })()
+
 updateLoc();
