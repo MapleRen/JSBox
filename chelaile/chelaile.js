@@ -177,7 +177,7 @@ async function  getStsData(){
                 text:otherTime
             },
             endSn:{
-                text:ines[i].line.endSn
+                text:lines[i].line.endSn
             }
         }
         sdata.push(obj);
