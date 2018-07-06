@@ -17,9 +17,21 @@ function updateLoc(){
         handler: function(resp) {
             lat = resp.lat.toFixed(6);
             lng = resp.lng.toFixed(6);
-            setUrl(lat,lng);
-            //$console.info("lat:"+lat+";lng:"+lng);
-            refreshNearSts();
+            //setUrl(lat,lng);
+            getCityCodeUrl="https://api.chelaile.net.cn/goocity/city!localCity.action?s=IOS&gpsAccuracy=65.000000&gpstype=wgs&push_open=1&vc=10554&lat="+lat+"&lng="+lng;
+
+            $http.get({
+                url: getCityCodeUrl,
+                handler: function(resp) {
+                    $console.info(resp.data);
+                    var data = resp.data.replace("**YGKJ","").replace("YGKJ##","");
+                    cityId=data.jsonr.data.localCity.cityId;
+                    cityName=data.jsonr.data.localCity.cityName;
+                    getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId="+cityId+"&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
+                    $console.info(cityName+":"+cityId);
+                refreshNearSts();
+                }
+            })
         }
         })
 }
@@ -437,6 +449,7 @@ function setUrl(lat,lng){
     $http.get({
         url: getCityCodeUrl,
         handler: function(resp) {
+            $console.info(resp.data);
             var data = resp.data.replace("**YGKJ","").replace("YGKJ##","");
             cityId=data.jsonr.data.localCity.cityId;
             cityName=data.jsonr.data.localCity.cityName;
