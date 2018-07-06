@@ -1,4 +1,4 @@
-const version = 1.00; //版本号
+const version = 1.01; //版本号
 var getCityCodeUrl;
 var getNearStsUrl;
 var getstationDetailUrl;
@@ -23,7 +23,7 @@ function updateLoc(){
                 url: getCityCodeUrl,
                 handler: function(resp) {
                     
-                    var data = resp.data.replace("**YGKJ","").replace("YGKJ##","");
+                    var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##","")）;
                     $console.info(data);
                     cityId=data.jsonr.data.localCity.cityId;
                     cityName=data.jsonr.data.localCity.cityName;
