@@ -23,7 +23,7 @@ function updateLoc(){
                 url: getCityCodeUrl,
                 handler: function(resp) {
                     
-                    var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##","")）;
+                    var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
                     $console.info(data);
                     cityId=data.jsonr.data.localCity.cityId;
                     cityName=data.jsonr.data.localCity.cityName;
