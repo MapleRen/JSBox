@@ -138,6 +138,7 @@ $ui.render({
 })
 
 async function  getStsData(){
+    $console.info("获取明细")
     var resp=await $http.get(getstationDetailUrl)
     var data=JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""))
     var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
@@ -179,6 +180,7 @@ async function  getStsData(){
         sdata.push(obj);
     }
     $console.info(sdata);
+    $("stnDetailList").data=sdata;
 }
 
 
