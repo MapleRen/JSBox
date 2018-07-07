@@ -1,4 +1,4 @@
-const version = 1.01; //版本号
+const version = 1.02; //版本号
 var getCityCodeUrl;
 var getNearStsUrl;
 var getstationDetailUrl;
@@ -22,7 +22,6 @@ function updateLoc(){
             $http.get({
                 url: getCityCodeUrl,
                 handler: function(resp) {
-                    
                     var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
                     $console.info(data);
                     cityId=data.jsonr.data.localCity.cityId;
@@ -151,103 +150,7 @@ $ui.render({
     }]
 })
 
-async function  getStsData(){
-    $ui.loading(true);
-    var resp=await $http.get(getstationDetailUrl)
-    var data=JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""))
-    var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
-    var stsname=data.jsonr.data.sn;
-    var sdata=[];
-    for(let i = 0; i < lines.length ; i++){
-        var stnStates=lines[i].stnStates;//下一班车集合
-        var arrivalTime="";
-        var otherTime="下一班时间";
-        
-        if(stnStates.length>0){
-            arrivalTime=getArrivalTime(stnStates[0].arrivalTime);
-        }else{
-            arrivalTime=lines[i].line.desc;
-        }
-        var obj={
-            lineName:{
-                text:lines[i].line.name+"路"
-            },
-            lineId:{
-                text:lines[i].line.lineId
-            },
-            wokingtime:{
-                text:"首 "+lines[i].line.firstTime + " 末 "+lines[i].line.lastTime
-            },
-            nextStName:{
-                text:"> 下一站·"+lines[i].nextStation.sn
-            },
-            nextStid:{
-                text:lines[i].nextStation.sId
-            },
-            ariTime:{
-                text:arrivalTime+""
-            },
-            otTime:{
-                text:otherTime
-            },
-            endSn:{
-                text:lines[i].line.endSn
-            }
-        }
-        sdata.push(obj);
-    }
-    $console.info(sdata);
-    $("stnDetailList").data=sdata;
-    $("stnDetailList").endFetchingMore();
-    $("recent").endRefreshing();
-    $ui.loading(false);
-}
-
-
-//刷新附近站点
-function refreshNearSts(){
-    $ui.loading(true)
-    $http.get({
-        url: encodeURI(getNearStsUrl),
-        handler: function(resp) {
-            $ui.loading(false)
-            $("nearStsList").endFetchingMore()
-            var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
-            var datalist=[];
-            //$console.info(data);
-            $console.info(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
-            var nearSts=data.jsonr.data.nearSts;
-            $console.info(nearSts);
-            for (let i = 0; i < nearSts.length; i++) {
-                var obj={
-                    nearSts_sn:{
-                        text:nearSts[i].sn
-                    },
-                    nearSts_lineNames:{
-                        text:nearSts[i].lineNames
-                    },
-                    nearSts_distance:{
-                        text:nearSts[i].distance<100?"<100m":nearSts[i].distance+"m"
-                    },
-                    id:{
-                        text:nearSts[i].sId
-                    },
-                    sortPolicy:{
-                        text:nearSts[i].sortPolicy
-                    }
-                }
-                datalist.push(obj);
-            }
-            //renderView(datalist);
-            $("nearStsList").endRefreshing();
-            $("nearStsList").data=datalist;
-        }
-    })
-}
-
-//获得站点明细
-function getStsDetail(stsdata){
-    var data = JSON.parse(stsdata.replace("**YGKJ","").replace("YGKJ##",""));
+function makeStsData(jsondata){
     var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
     var stsname=data.jsonr.data.sn;
     var sdata=[];
@@ -307,10 +210,68 @@ function getStsDetail(stsdata){
         }
         sdata.push(obj);
     }
-    stationDetail(sdata,stsname);
+    return sdata;
+}
+
+async function  getStsData(){
+    $ui.loading(true);
+    var resp=await $http.get(getstationDetailUrl)
+    var data=JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
+    $("stnDetailList").data=makeStsData(data);
+    $("stnDetailList").endFetchingMore();
+    $("stnDetailList").endRefreshing();
+    $ui.loading(false);
+}
+
+
+//刷新附近站点
+function refreshNearSts(){
+    $ui.loading(true)
+    $http.get({
+        url: encodeURI(getNearStsUrl),
+        handler: function(resp) {
+            $ui.loading(false)
+            $("nearStsList").endFetchingMore()
+            var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
+            var datalist=[];
+            //$console.info(data);
+            $console.info(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
+            var nearSts=data.jsonr.data.nearSts;
+            $console.info(nearSts);
+            for (let i = 0; i < nearSts.length; i++) {
+                var obj={
+                    nearSts_sn:{
+                        text:nearSts[i].sn
+                    },
+                    nearSts_lineNames:{
+                        text:nearSts[i].lineNames
+                    },
+                    nearSts_distance:{
+                        text:nearSts[i].distance<100?"<100m":nearSts[i].distance+"m"
+                    },
+                    id:{
+                        text:nearSts[i].sId
+                    },
+                    sortPolicy:{
+                        text:nearSts[i].sortPolicy
+                    }
+                }
+                datalist.push(obj);
+            }
+            //renderView(datalist);
+            $("nearStsList").endRefreshing();
+            $("nearStsList").data=datalist;
+        }
+    })
+}
+
+//获得站点明细
+function getStsDetail(stsdata){
+    var data = JSON.parse(stsdata.replace("**YGKJ","").replace("YGKJ##",""));
+    renderStationDetail(makeStsData(data),stsname);
 }
 //渲染站点明细列表
-function stationDetail(sdata,sname){
+function renderStationDetail(sdata,sname){
     $ui.push({
         props: {
             title: sname,
