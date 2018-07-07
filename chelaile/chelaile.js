@@ -151,8 +151,8 @@ $ui.render({
 })
 
 function makeStsData(jsondata){
-    var lines=data.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
-    var stsname=data.jsonr.data.sn;
+    var lines=jsondata.jsonr.data.lines.filter(function(line){ return line.line.direction==direction});//正方向
+    var stsname=jsondata.jsonr.data.sn;
     var sdata=[];
     for(let i = 0; i < lines.length ; i++){
         var stnStates=lines[i].stnStates;//下一班车集合
