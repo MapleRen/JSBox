@@ -268,7 +268,7 @@ function refreshNearSts(){
 //获得站点明细
 function getStsDetail(stsdata){
     var data = JSON.parse(stsdata.replace("**YGKJ","").replace("YGKJ##",""));
-    renderStationDetail(makeStsData(data),stsname);
+    renderStationDetail(makeStsData(data),data.jsonr.data.sn);
 }
 //渲染站点明细列表
 function renderStationDetail(sdata,sname){
