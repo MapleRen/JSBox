@@ -1,7 +1,8 @@
-const version = 1.02; //版本号
+const version = 1.1; //版本号
 var getCityCodeUrl;
 var getNearStsUrl;
 var getstationDetailUrl;
+var getLineDetailUrl;
 var lat;
 var lng;
 var datalist=[]
@@ -17,7 +18,6 @@ function updateLoc(){
         handler: function(resp) {
             lat = resp.lat.toFixed(6);
             lng = resp.lng.toFixed(6);
-            //setUrl(lat,lng);
             getCityCodeUrl="https://api.chelaile.net.cn/goocity/city!localCity.action?s=IOS&gpsAccuracy=65.000000&gpstype=wgs&push_open=1&vc=10554&lat="+lat+"&lng="+lng;
             $http.get({
                 url: getCityCodeUrl,
@@ -129,6 +129,7 @@ $ui.render({
             },
             didSelect:function(sender, indexPath, data){
                 $ui.loading(true);
+                $ui.toast("加载中...",1)
                 var stsName=data.nearSts_sn.text;
                 var id=data.id.text;
                 getstationDetailUrl="https://api.chelaile.net.cn/bus/stop!stationDetail.action?&destSId=-1&gpsAccuracy=65.000000&lorder=1&stats_act=refresh&stationId="+id+"&cityId="+cityId+"&sign=&stats_referer=nearby&s=IOS&dpi=3&push_open=1&v=5.50.4";
@@ -206,6 +207,9 @@ function makeStsData(jsondata){
             },
             endSn:{
                 text:lines[i].line.endSn
+            },
+            targetOrder:{
+                text:lines[i].targetStation.order//当前站点的order
             }
         }
         sdata.push(obj);
@@ -258,7 +262,6 @@ function refreshNearSts(){
                 }
                 datalist.push(obj);
             }
-            //renderView(datalist);
             $("nearStsList").endRefreshing();
             $("nearStsList").data=datalist;
         }
@@ -310,7 +313,7 @@ function renderStationDetail(sdata,sname){
                 },{
                     type:"label",
                     props:{
-                        id:"endSn",
+                        id:"wokingtime",
                         font:$font(10),
                         textColor:$color("lightGray"),
                         autoFontSize:false
@@ -382,6 +385,34 @@ function renderStationDetail(sdata,sname){
                 pulled: function(sender) {
                     getStsData();
                 },
+                didSelect:function(sender, indexPath, data){
+                    var url=encodeURI("https://api.chelaile.net.cn/bus/line!lineDetail.action?mac=&userId=&vc=10555&cityState=0&gpsAccuracy=65.000000&stats_order=1-2&sign=&s=IOS&stats_referer=stationDetail&v=5.50.5&lineId="+data.lineId.text+"&cityId="+cityId+"&targetOrder="+data.targetOrder.text);
+                    $ui.loading(true)
+                    $http.get({
+                        url: url,
+                        handler: function(resp) {
+                            var data = getJson(resp.data);
+                            var msg="暂无信息！";
+                            if(data.jsonr.data.buses.length>0){
+                                var nextorder=data.jsonr.data.buses[0].order
+                                var nextStation=data.jsonr.data.stations.filter(function(st){return st.order==nextorder})[0]
+                                $console.info(nextStation);
+                                msg="下一班车即将到达："+nextStation.sn;
+                            }
+                            $ui.loading(false)
+                            $ui.alert({
+                                title:"线路信息",
+                                message:msg,
+                                actions:[{
+                                    title:"取消",
+                                    handler:function(){
+
+                                    }
+                                }]
+                            })
+                        }
+                      })
+                }
             }
         }]
     })
@@ -404,20 +435,9 @@ function getArrivalTime(unixtime){
     }
     
 }
-function setUrl(lat,lng){
-    getCityCodeUrl="https://api.chelaile.net.cn/goocity/city!localCity.action?s=IOS&gpsAccuracy=65.000000&gpstype=wgs&push_open=1&vc=10554&lat="+lat+"&lng="+lng;
-    
-    $http.get({
-        url: getCityCodeUrl,
-        handler: function(resp) {
-            $console.info(resp.data);
-            var data = resp.data.replace("**YGKJ","").replace("YGKJ##","");
-            cityId=data.jsonr.data.localCity.cityId;
-            cityName=data.jsonr.data.localCity.cityName;
-            getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId="+cityId+"&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
-            $console.info(cityName+":"+cityId);
-        }
-    })
+function getJson(data){
+    $console.info(data)
+    return JSON.parse(data.replace("**YGKJ","").replace("YGKJ##",""));
 }
 (async function checkUpdate() {
     const versionURL = 'https://raw.githubusercontent.com/MapleRen/JSBox/master/chelaile/versioninfo.json'
