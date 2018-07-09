@@ -447,7 +447,7 @@ function getJson(data){
     if (version >= resp.data.version) return
     $ui.action({
       title: '更新提示',
-      message: '发现新版本'+resp.data.version+', 是否更新 ?更新完请重新启动新版本。\n'+resp.data.msg,
+      message: '发现新版本'+resp.data.version+', \n(是否更新 ?更新完请重新启动新版本。)\n'+resp.data.msg,
       actions: [{
           title: '更新',
           handler: () => {
