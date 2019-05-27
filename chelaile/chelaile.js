@@ -1,4 +1,4 @@
-const version = 1.1; //版本号
+const version = 1.2; //版本号
 var getCityCodeUrl;
 var getNearStsUrl;
 var getstationDetailUrl;
@@ -9,7 +9,6 @@ var datalist=[]
 var direction=$cache.get("direction")||0;
 var cityId="";
 var cityName="";
-$console.info(direction)
 
 //更新当前地理位置
 function updateLoc(){
@@ -22,13 +21,23 @@ function updateLoc(){
             $http.get({
                 url: getCityCodeUrl,
                 handler: function(resp) {
-                    var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
-                    $console.info(data);
-                    cityId=data.jsonr.data.localCity.cityId;
-                    cityName=data.jsonr.data.localCity.cityName;
-                    getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId="+cityId+"&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
-                    $console.info(cityName+":"+cityId);
-                refreshNearSts();
+                    console.log(resp)
+                    if(resp.response!=null){
+                        var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
+                        cityId=data.jsonr.data.localCity.cityId;
+                        cityName=data.jsonr.data.localCity.cityName;
+                        if(cityId==-1){
+                            $ui.toast("暂不支持当前城市...")
+                        }else{
+                            getNearStsUrl="https://api.chelaile.net.cn/bus/stop!homePageInfo.action?type=1&act=2&gpstype=wgs&gpsAccuracy=65.000000&cityId="+cityId+"&hist=&s=IOS&sign=&dpi=3&push_open=1&v=5.50.4&lat="+lat+"&lng="+lng;
+                            refreshNearSts();
+                        }
+                    }else{
+                        $ui.toast("请求失败...")
+                    }
+                   
+                    //$console.info(cityName+":"+cityId);
+                    
                 }
             })
         }
@@ -51,7 +60,7 @@ $ui.render({
             props: {
               id: 'pageTitle', //标题
               text: '附近站点',
-              font: $font("bold", 20),
+              font: $font("bold", 18),
               textColor: $color('black'),
               align: $align.center
             },
@@ -115,9 +124,7 @@ $ui.render({
                     },
                     layout: function(make,view) {
                       var preView = $("nearSts_sn")
-                      //make.bottom.equalTo(preView.top)
                       make.centerY.equalTo(preView.centerY)
-                      //make.height.equalTo(20)
                       make.right.equalTo(0).inset(20)
                     }
                   }]
@@ -166,23 +173,6 @@ function makeStsData(jsondata){
             arrivalTime=lines[i].line.desc;
         }
         $console.info(arrivalTime+"分钟")
-        //生成下一班时间数据
-        // if(stnStates.length>1){
-        //     for(let j=0;j<stnStates.length;j++){
-        //         if(j=0){
-        //             arrivalTime=getArrivalTime(stnStates[j].arrivalTime);
-        //         } else if(j=1){
-        //             otherTime+=getArrivalTime(stnStates[j].arrivalTime);
-        //         }else{
-        //             otherTime+=";"+getArrivalTime(stnStates[j].arrivalTime);
-        //         }
-        //     }
-        // }else if(stnStates.length==0){
-        //     arrivalTime=lines[i].line.desc;
-        // }else{
-        //     arrivalTime=getArrivalTime(stnStates[0].arrivalTime);
-        //     otherTime="下一班时间";
-        // }
         var obj={
             lineName:{
                 text:lines[i].line.name+"路"
@@ -239,9 +229,9 @@ function refreshNearSts(){
             var data = JSON.parse(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
             var datalist=[];
             //$console.info(data);
-            $console.info(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
+            //$console.info(resp.data.replace("**YGKJ","").replace("YGKJ##",""));
             var nearSts=data.jsonr.data.nearSts;
-            $console.info(nearSts);
+            //$console.info(nearSts);
             for (let i = 0; i < nearSts.length; i++) {
                 var obj={
                     nearSts_sn:{
@@ -436,7 +426,7 @@ function getArrivalTime(unixtime){
     
 }
 function getJson(data){
-    $console.info(data)
+    //$console.info(data)
     return JSON.parse(data.replace("**YGKJ","").replace("YGKJ##",""));
 }
 (async function checkUpdate() {
@@ -444,7 +434,8 @@ function getJson(data){
     let resp = await $http.get(versionURL)
     const jsURL='https://raw.githubusercontent.com/MapleRen/JSBox/master/chelaile/chelaile.js&icon=icon_087.png&types=1&version='+resp.data.version+'&name=车来了&author=Ren'
     const updateURL = `jsbox://install?url=${encodeURI(jsURL)}`
-    if (version >= resp.data.version) return
+    console.log(resp)
+    if (version >= resp.data.version || resp.response==null) return
     $ui.action({
       title: '更新提示',
       message: '发现新版本'+resp.data.version+', \n(是否更新 ?更新完请重新启动新版本。)\n'+resp.data.msg,
