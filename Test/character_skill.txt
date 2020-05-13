@@ -4938,8 +4938,8 @@
         "cooltime": 1,
         "cooltime_sub": 0,
         "target": 1,
-        "target_range": 360,
-        "range": 3600
+        "target_range": 350,
+        "range": 600,
         "angle": 360,
         "time": 0,
         "time_add": 0,
