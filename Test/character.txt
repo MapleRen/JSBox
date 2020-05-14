@@ -860,7 +860,7 @@
         "size": 2,
         "stat1": 6500,
         "stat2": 6500,
-        "stat3": 11500,
+        "stat3": 91500,
         "stat4": 6500,
         "hit_count": 100,
         "attack_speed": 100,
