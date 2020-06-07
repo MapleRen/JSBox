@@ -85,23 +85,23 @@
     },
     {
         "idx": "boss_respawn_count",
-        "value": 5
+        "value": 10
     },
     {
         "idx": "boss_respawn_time",
-        "value": 5
+        "value": 1
     },
     {
         "idx": "tower_respawn_gem",
-        "value": 10
+        "value": 200
     },
     {
         "idx": "tower_respawn_gem_increment",
-        "value": 10
+        "value": 200
     },
     {
         "idx": "tower_respawn_count",
-        "value": 5
+        "value": 3
     },
     {
         "idx": "hero_revive_gem",
@@ -1009,7 +1009,7 @@
     },
     {
         "idx": "event_boss_raid_respawn_count",
-        "value": 1
+        "value": 10
     },
     {
         "idx": "event_boss_raid_respawn_gem",
@@ -1365,7 +1365,7 @@
     },
     {
         "idx": "unlucky_event_item",
-        "value": 418
+        "value": 411
     },
     {
         "idx": "jumpingpass_schedule",
@@ -1401,7 +1401,7 @@
     },
     {
         "idx": "give_good_quest",
-        "value": 23
+        "value": 999
     },
     {
         "idx": "give_good_quest_t",
@@ -1426,5 +1426,33 @@
     {
         "idx": "famil_month_spend_coin_tear_paper",
         "value": 50
+    },
+    {
+        "idx": "tower_clear_free_count",
+        "value": 1
+    },
+    {
+        "idx": "tower_clear_gem_count",
+        "value": 1
+    },
+    {
+        "idx": "tower_clear_gem",
+        "value": 200
+    },
+    {
+        "idx": "tower_clear_gem_increment",
+        "value": 200
+    },
+    {
+        "idx": "tower_respawn_gem_count",
+        "value": 1
+    },
+    {
+        "idx": "opening_manga_ruby_add",
+        "value": 100
+    },
+    {
+        "idx": "opening_manga_ruby_max",
+        "value": 2000
     }
 ]
