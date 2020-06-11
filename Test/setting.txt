@@ -369,7 +369,7 @@
     },
     {
         "idx": "auto_condition_level",
-        "value": 3
+        "value": 10
     },
     {
         "idx": "equip_suboption_count_grade1",
