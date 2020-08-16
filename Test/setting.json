@@ -57,7 +57,7 @@
     },
     {
         "idx": "secretshop_view_time",
-        "value": 150
+        "value": 180
     },
     {
         "idx": "secretshop_allbuy_reward",
@@ -85,11 +85,11 @@
     },
     {
         "idx": "boss_respawn_count",
-        "value": 10
+        "value": 5
     },
     {
         "idx": "boss_respawn_time",
-        "value": 1
+        "value": 1800
     },
     {
         "idx": "tower_respawn_gem",
@@ -125,51 +125,11 @@
     },
     {
         "idx": "monster_respawn_time",
-        "value": 1
+        "value": 5
     },
     {
         "idx": "ads_hero_return_time",
         "value": 180
-    },
-    {
-        "idx": "ads_gem_normal_count",
-        "value": 50
-    },
-    {
-        "idx": "ads_gem_cooltime",
-        "value": 180
-    },
-    {
-        "idx": "ads_gem_count",
-        "value": 50
-    },
-    {
-        "idx": "ads_gem_2_cooltime",
-        "value": 1440
-    },
-    {
-        "idx": "ads_gem_2_count",
-        "value": 30
-    },
-    {
-        "idx": "ads_gem_3_cooltime",
-        "value": 1440
-    },
-    {
-        "idx": "ads_gem_3_count",
-        "value": 30
-    },
-    {
-        "idx": "ads_gold_normal_value",
-        "value": 40
-    },
-    {
-        "idx": "ads_gold_cooltime",
-        "value": 120
-    },
-    {
-        "idx": "ads_gold_value",
-        "value": 40
     },
     {
         "idx": "ads_buff_cooltime",
@@ -369,7 +329,7 @@
     },
     {
         "idx": "auto_condition_level",
-        "value": 10
+        "value": 3
     },
     {
         "idx": "equip_suboption_count_grade1",
@@ -494,6 +454,10 @@
     {
         "idx": "card_change_tribe8_resource",
         "value": 301
+    },
+    {
+        "idx": "card_change_tribe9_resource",
+        "value": 302
     },
     {
         "idx": "tanker_aggro_increment",
@@ -700,92 +664,20 @@
         "value": 2
     },
     {
-        "idx": "ads_equiprevolution_normal_count",
-        "value": 1
-    },
-    {
-        "idx": "ads_equiprevolution_cooltime",
-        "value": 180
-    },
-    {
-        "idx": "ads_equiprevolution_count",
-        "value": 1
-    },
-    {
-        "idx": "ads_magicstone_normal_count",
-        "value": 1
-    },
-    {
-        "idx": "ads_magicstone_cooltime",
-        "value": 60
-    },
-    {
-        "idx": "ads_magicstone_count",
-        "value": 1
-    },
-    {
-        "idx": "ads_bloodstone_normal_count",
-        "value": 2
-    },
-    {
-        "idx": "ads_bloodstone_cooltime",
-        "value": 120
-    },
-    {
-        "idx": "ads_bloodstone_count",
-        "value": 2
-    },
-    {
-        "idx": "ads_block_normal_count",
-        "value": 5
-    },
-    {
-        "idx": "ads_block_cooltime",
-        "value": 300
-    },
-    {
-        "idx": "ads_block_count",
-        "value": 5
-    },
-    {
-        "idx": "ads_ticket_normal_count",
-        "value": 1
-    },
-    {
-        "idx": "ads_ticket_cooltime",
-        "value": 90
-    },
-    {
-        "idx": "ads_ticket_count",
-        "value": 1
-    },
-    {
         "idx": "bleeding_increment",
-        "value": 0
+        "value": 0.25
     },
     {
         "idx": "fetter_increment",
-        "value": 0
-    },
-    {
-        "idx": "fetter_damage_percent",
-        "value": 0.1
+        "value": 0.5
     },
     {
         "idx": "fetter_critical_percent",
-        "value": 0
+        "value": 0.15
     },
     {
         "idx": "fetter_critical_damage",
-        "value": 0
-    },
-    {
-        "idx": "frozen_movespeed_decrement",
-        "value": 0.75
-    },
-    {
-        "idx": "frozen_cooltime_decrement",
-        "value": 0.5
+        "value": 0.3
     },
     {
         "idx": "guild_investment_dailylimit",
@@ -853,27 +745,27 @@
     },
     {
         "idx": "arena_win",
-        "value": 5
+        "value": 10
     },
     {
         "idx": "arena_lose",
-        "value": 1
-    },
-    {
-        "idx": "arena_draw",
-        "value": 3
-    },
-    {
-        "idx": "grand_arena_win",
         "value": 5
     },
     {
+        "idx": "arena_draw",
+        "value": 7
+    },
+    {
+        "idx": "grand_arena_win",
+        "value": 10
+    },
+    {
         "idx": "grand_arena_lose",
-        "value": 1
+        "value": 5
     },
     {
         "idx": "grand_arena_draw",
-        "value": 3
+        "value": 7
     },
     {
         "idx": "event_coop_step_reward",
@@ -893,7 +785,7 @@
     },
     {
         "idx": "event_tree_reward_item",
-        "value": 418
+        "value": 416
     },
     {
         "idx": "material_change_add_gem",
@@ -925,11 +817,11 @@
     },
     {
         "idx": "event_vote_reward_success",
-        "value": 30002
+        "value": 103
     },
     {
         "idx": "event_vote_reward_fail",
-        "value": 30001
+        "value": 101
     },
     {
         "idx": "store_free_slot",
@@ -941,11 +833,15 @@
     },
     {
         "idx": "store_increment_gem",
-        "value": 0
+        "value": 50
     },
     {
         "idx": "store_increment_gem_max",
-        "value": 100
+        "value": 1000
+    },
+    {
+        "idx": "store_increment_gem_max2",
+        "value": 500
     },
     {
         "idx": "store_extra_unit",
@@ -953,7 +849,7 @@
     },
     {
         "idx": "store_extra_max",
-        "value": 100
+        "value": 400
     },
     {
         "idx": "guild_arena_win",
@@ -1009,7 +905,7 @@
     },
     {
         "idx": "event_boss_raid_respawn_count",
-        "value": 10
+        "value": 2
     },
     {
         "idx": "event_boss_raid_respawn_gem",
@@ -1021,7 +917,7 @@
     },
     {
         "idx": "lab_free_count",
-        "value": 4
+        "value": 5
     },
     {
         "idx": "lab_gem",
@@ -1077,7 +973,7 @@
     },
     {
         "idx": "lab_max_stage",
-        "value": 8
+        "value": 10
     },
     {
         "idx": "guild_arena_free_count",
@@ -1093,11 +989,11 @@
     },
     {
         "idx": "quest_ads_time",
-        "value": 480
+        "value": 360
     },
     {
         "idx": "townshop_initialize_ads_time",
-        "value": 480
+        "value": 360
     },
     {
         "idx": "medalshop_ads_time",
@@ -1329,11 +1225,15 @@
     },
     {
         "idx": "pet_max_grade",
-        "value": 10
+        "value": 12
     },
     {
         "idx": "specific_period_get_emblem",
         "value": 10038
+    },
+    {
+        "idx": "specific_period_get_emblem_monster_count",
+        "value": 815
     },
     {
         "idx": "mabumon_passive_change_price",
@@ -1345,27 +1245,135 @@
     },
     {
         "idx": "death_sythe_stack_ratio",
-        "value": 0.1
+        "value": 0.2
     },
     {
-        "idx": "package_reddot",
-        "value": 9
+        "idx": "zechs_skill2_range",
+        "value": 350
     },
     {
-        "idx": "daily_reddot",
-        "value": 9
+        "idx": "zechs_skill3_range",
+        "value": 350
     },
     {
-        "idx": "orientation_during_time",
-        "value": 25
+        "idx": "monster_change_add_gem",
+        "value": 100
     },
     {
-        "idx": "orientation_end_time",
-        "value": 7
+        "idx": "monster_change_daily_limit",
+        "value": 2
     },
     {
-        "idx": "unlucky_event_item",
-        "value": 411
+        "idx": "monster_change_rare_1_count_per_once",
+        "value": 100
+    },
+    {
+        "idx": "monster_change_rare_2_count_per_once",
+        "value": 100
+    },
+    {
+        "idx": "monster_change_rare_3_count_per_once",
+        "value": 100
+    },
+    {
+        "idx": "monster_change_rare_4_count_per_once",
+        "value": 100
+    },
+    {
+        "idx": "monster_change_rare_2",
+        "value": 0.5
+    },
+    {
+        "idx": "monster_change_rare_3",
+        "value": 0.5
+    },
+    {
+        "idx": "monster_change_rare_4",
+        "value": 0.2
+    },
+    {
+        "idx": "monster_change_rare_5",
+        "value": 0.01
+    },
+    {
+        "idx": "monster_dungeon_respawn_count",
+        "value": 2
+    },
+    {
+        "idx": "monster_dungeon_respawn_gem",
+        "value": 100
+    },
+    {
+        "idx": "monster_dungeon_respawn_increment",
+        "value": 50
+    },
+    {
+        "idx": "monster_dungeon_wave_delay",
+        "value": 4
+    },
+    {
+        "idx": "monster_dungeon_time",
+        "value": 120
+    },
+    {
+        "idx": "monster_dungeon_max_cost",
+        "value": 20
+    },
+    {
+        "idx": "monster_dungeon_start_cost",
+        "value": 5
+    },
+    {
+        "idx": "lab_5boss_passive1_probabillty",
+        "value": 0.2
+    },
+    {
+        "idx": "lab_5boss_self_recovery_time",
+        "value": 0.25
+    },
+    {
+        "idx": "lab_5boss_self_recovery_value",
+        "value": 0.0125
+    },
+    {
+        "idx": "lab_5boss_crazymode_value",
+        "value": 0.01
+    },
+    {
+        "idx": "lab_5boss_crazymode_value1",
+        "value": 0.49
+    },
+    {
+        "idx": "lab_5boss_crazymode_value2",
+        "value": 1
+    },
+    {
+        "idx": "lab_5boss_stamina_tanker_damage",
+        "value": 0.6
+    },
+    {
+        "idx": "lab_5boss_stamina_closerangedealer_damage",
+        "value": 1
+    },
+    {
+        "idx": "lab_5boss_stamina_alongdistancedealer_damage",
+        "value": 0.75
+    },
+    {
+        "idx": "lab_5boss_stamina_wizarddealer_damage",
+        "value": 0.75
+    },
+    {
+        "idx": "lab_5boss_stamina_healer_damage",
+        "value": 0.5
+    },
+    {
+        "idx": "lab_5boss_stamina_return_damage",
+        "value": 0.01
+    },
+    {
+        "idx": "lab_5boss_shield_stamina_damage",
+        "value": 175000
     },
     {
         "idx": "jumpingpass_schedule",
@@ -1384,8 +1392,136 @@
         "value": 36
     },
     {
+        "idx": "ads_equiprevolution_cooltime",
+        "value": 900
+    },
+    {
+        "idx": "ads_equiprevolution_normal_count",
+        "value": 1
+    },
+    {
+        "idx": "ads_equiprevolution_count",
+        "value": 5
+    },
+    {
+        "idx": "ads_magicstone_cooltime",
+        "value": 300
+    },
+    {
+        "idx": "ads_magicstone_normal_count",
+        "value": 1
+    },
+    {
+        "idx": "ads_magicstone_count",
+        "value": 5
+    },
+    {
+        "idx": "ads_bloodstone_cooltime",
+        "value": 600
+    },
+    {
+        "idx": "ads_bloodstone_normal_count",
+        "value": 2
+    },
+    {
+        "idx": "ads_bloodstone_count",
+        "value": 10
+    },
+    {
+        "idx": "ads_block_cooltime",
+        "value": 300
+    },
+    {
+        "idx": "ads_block_normal_count",
+        "value": 1
+    },
+    {
+        "idx": "ads_block_count",
+        "value": 5
+    },
+    {
+        "idx": "ads_ticket_cooltime",
+        "value": 450
+    },
+    {
+        "idx": "ads_ticket_normal_count",
+        "value": 1
+    },
+    {
+        "idx": "ads_ticket_count",
+        "value": 5
+    },
+    {
+        "idx": "ads_gem_cooltime",
+        "value": 180
+    },
+    {
+        "idx": "ads_gem_normal_count",
+        "value": 10
+    },
+    {
+        "idx": "ads_gem_count",
+        "value": 50
+    },
+    {
+        "idx": "ads_gold_cooltime",
+        "value": 120
+    },
+    {
+        "idx": "ads_gold_normal_value",
+        "value": 8
+    },
+    {
+        "idx": "ads_gold_value",
+        "value": 40
+    },
+    {
+        "idx": "ads_power_cooltime",
+        "value": 30
+    },
+    {
+        "idx": "ads_power_normal_count",
+        "value": 60
+    },
+    {
+        "idx": "ads_power_count",
+        "value": 300
+    },
+    {
+        "idx": "moru_bounus_1",
+        "value": 1
+    },
+    {
+        "idx": "moru_bounus_2",
+        "value": 2
+    },
+    {
+        "idx": "moru_bounus_3",
+        "value": 3
+    },
+    {
+        "idx": "equip_limit_levol",
+        "value": 5
+    },
+    {
+        "idx": "hack_check_status",
+        "value": 1
+    },
+    {
+        "idx": "2years_gacha_count",
+        "value": 1
+    },
+    {
         "idx": "eventpass_schedule",
         "value": 30
+    },
+    {
+        "idx": "2years_gmevent_limit_time",
+        "value": 60
+    },
+    {
+        "idx": "2years_gmevent_shield_time",
+        "value": 3
     },
     {
         "idx": "event_tilemap_time",
@@ -1400,32 +1536,96 @@
         "value": 35
     },
     {
+        "idx": "equip_socket1_condition",
+        "value": 10
+    },
+    {
+        "idx": "equip_socket2_condition",
+        "value": 15
+    },
+    {
+        "idx": "equip_socket1_cost",
+        "value": 50000000
+    },
+    {
+        "idx": "equip_socket2_cost",
+        "value": 100000000
+    },
+    {
+        "idx": "relic_socket1_condition",
+        "value": 10
+    },
+    {
+        "idx": "relic_socket2_condition",
+        "value": 15
+    },
+    {
+        "idx": "relic_socket1_cost",
+        "value": 50000000
+    },
+    {
+        "idx": "relic_socket2_cost",
+        "value": 100000000
+    },
+    {
+        "idx": "datachip_release",
+        "value": 200
+    },
+    {
+        "idx": "datachip_change_value",
+        "value": 10
+    },
+    {
+        "idx": "datachip_upgrade_value",
+        "value": 3
+    },
+    {
+        "idx": "datachip_grade2_prob",
+        "value": 0.9
+    },
+    {
+        "idx": "datachip_grade2_item_value",
+        "value": 30
+    },
+    {
+        "idx": "datachip_grade3_prob",
+        "value": 0.7
+    },
+    {
+        "idx": "datachip_grade3_item_value",
+        "value": 50
+    },
+    {
+        "idx": "datachip_grade4_prob",
+        "value": 0.3
+    },
+    {
+        "idx": "datachip_grade4_item_value",
+        "value": 100
+    },
+    {
+        "idx": "relic_grade_increment12",
+        "value": 1
+    },
+    {
+        "idx": "relic_grade_increment13",
+        "value": 3
+    },
+    {
+        "idx": "relic_grade_increment14",
+        "value": 7
+    },
+    {
+        "idx": "relic_grade_increment15",
+        "value": 15
+    },
+    {
         "idx": "give_good_quest",
         "value": 999
     },
     {
         "idx": "give_good_quest_t",
         "value": 30
-    },
-    {
-        "idx": "2years_gacha_count",
-        "value": 1
-    },
-    {
-        "idx": "2years_gmevent_limit_time",
-        "value": 60
-    },
-    {
-        "idx": "2years_gmevent_shield_time",
-        "value": 3
-    },
-    {
-        "idx": "hack_check_status",
-        "value": 0
-    },
-    {
-        "idx": "famil_month_spend_coin_tear_paper",
-        "value": 50
     },
     {
         "idx": "tower_clear_free_count",
@@ -1444,15 +1644,223 @@
         "value": 200
     },
     {
+        "idx": "famil_month_spend_coin_tear_paper",
+        "value": 30
+    },
+    {
+        "idx": "mabupass_reconfirm_popup",
+        "value": 14
+    },
+    {
         "idx": "tower_respawn_gem_count",
         "value": 1
     },
     {
+        "idx": "event_boss_raid_item",
+        "value": 420
+    },
+    {
+        "idx": "min_skill_cool_time",
+        "value": 0.5
+    },
+    {
+        "idx": "character_supporting_operation_town",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_normal_field",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_normal_dungeon",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_mabomonpark",
+        "value": 0
+    },
+    {
+        "idx": "character_supporting_operation_pve_lab",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_relic",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_infinitetower",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_egg",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_carrot",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_company_raid",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pve_event_dungeon",
+        "value": 1
+    },
+    {
+        "idx": "character_supporting_operation_pvp_5_arena",
+        "value": 0
+    },
+    {
+        "idx": "character_supporting_operation_pvp_10_arena",
+        "value": 0
+    },
+    {
+        "idx": "character_supporting_operation_pvp_company_competition",
+        "value": 0
+    },
+    {
+        "idx": "character_supporting_contentsopen_condition",
+        "value": 5
+    },
+    {
+        "idx": "character_supporting_contentsopen_condition_evolve",
+        "value": 10
+    },
+    {
+        "idx": "character_supporting_opencondition_character_count",
+        "value": 6
+    },
+    {
+        "idx": "character_supporting_opencondition_character_evolve",
+        "value": 10
+    },
+    {
+        "idx": "character_supporting_opencondition_character_count2",
+        "value": 6
+    },
+    {
+        "idx": "character_supporting_opencondition_character_evolve2",
+        "value": 11
+    },
+    {
+        "idx": "character_supporting_opencondition_character_count3",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_opencondition_character_evolve3",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_opencondition_character_count4",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_opencondition_character_evolve4",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_opencondition_character_count5",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_opencondition_character_evolve5",
+        "value": 99
+    },
+    {
+        "idx": "character_supporting_damage",
+        "value": 0.3
+    },
+    {
+        "idx": "character_supporting_cooltime",
+        "value": 1.7
+    },
+    {
         "idx": "opening_manga_ruby_add",
-        "value": 100
+        "value": 0
     },
     {
         "idx": "opening_manga_ruby_max",
-        "value": 2000
+        "value": 0
+    },
+    {
+        "idx": "offline_standard_time",
+        "value": 60
+    },
+    {
+        "idx": "offline_minimum_time",
+        "value": 300
+    },
+    {
+        "idx": "offline_maximum_time",
+        "value": 43200
+    },
+    {
+        "idx": "coin_gacha_item",
+        "value": 422
+    },
+    {
+        "idx": "event_vote_reward_success_count",
+        "value": 50
+    },
+    {
+        "idx": "event_vote_reward_fail_count",
+        "value": 30
+    },
+    {
+        "idx": "offline_hunt_onoff",
+        "value": 1
+    },
+    {
+        "idx": "deck_slot_maximum",
+        "value": 20
+    },
+    {
+        "idx": "event_tear_paper_success_r_type",
+        "value": 3
+    },
+    {
+        "idx": "event_tear_paper_success_r_idx",
+        "value": 30035
+    },
+    {
+        "idx": "event_tear_paper_success_r_count",
+        "value": 1
+    },
+    {
+        "idx": "event_tear_paper_fail_r_type",
+        "value": 12
+    },
+    {
+        "idx": "event_tear_paper_fail_r_idx",
+        "value": 1
+    },
+    {
+        "idx": "event_tear_paper_fail_r_count",
+        "value": 50
+    },
+    {
+        "idx": "start_server",
+        "value": 50
+    },
+    {
+        "idx": "tutorial_point_out_questidx",
+        "value": 22
+    },
+    {
+        "idx": "main_ads_month",
+        "value": 2
+    },
+    {
+        "idx": "server_open_global",
+        "value": 0
+    },
+    {
+        "idx": "level_bundle_box1_idx_min",
+        "value": 32041
+    },
+    {
+        "idx": "level_bundle_box1_idx_max",
+        "value": 32065
     }
 ]
