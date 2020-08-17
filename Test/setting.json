@@ -85,11 +85,11 @@
     },
     {
         "idx": "boss_respawn_count",
-        "value": 5
+        "value": 10
     },
     {
         "idx": "boss_respawn_time",
-        "value": 1800
+        "value": 1
     },
     {
         "idx": "tower_respawn_gem",
@@ -125,7 +125,7 @@
     },
     {
         "idx": "monster_respawn_time",
-        "value": 5
+        "value": 1
     },
     {
         "idx": "ads_hero_return_time",
@@ -1505,7 +1505,7 @@
     },
     {
         "idx": "hack_check_status",
-        "value": 1
+        "value": 0
     },
     {
         "idx": "2years_gacha_count",
