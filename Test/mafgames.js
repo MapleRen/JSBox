@@ -25,7 +25,7 @@ if(isUpperVersion){
     $notify("TileRPG", "", "文件重定向");
     if($request.url.indexOf('9295') > -1){
         var mStatus = "HTTP/1.1 302 Found";
-        var mHeaders = {"Location": $request.url.replace('9295','0')};
+        var mHeaders = {"Location": $request.url.replace(/9295/g,"0")};
         var mResponse = {
             status:mStatus,
             headers:mHeaders
