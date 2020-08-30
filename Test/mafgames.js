@@ -31,7 +31,7 @@ if(isUpperVersion){
     }
     $done(mResponse);
 }else{
-    var body = JSON.parse(body);
+    var body = JSON.parse($response.body);
     var type = fileJudge();
     var config = JSON.parse($prefs.valueForKey(`${prefix}${type}`)||[]);
     switch(type){
