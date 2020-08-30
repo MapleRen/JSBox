@@ -17,6 +17,7 @@ function modifyData(data,mod,key){
     for(var i,item;item=mod[i++];){
         var obj = data.find(x=> x[key] == item[key]);
         if(obj == null) continue;
+        console.log(obj)
         Object.assign(obj,item)
     }
 }
