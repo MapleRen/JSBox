@@ -1,0 +1,45 @@
+{
+    "id": "tileRPG.app.sub",
+    "name": "测试配置订阅",
+    "author": "@Ren",
+    "icon": "https://avatars2.githubusercontent.com/u/40163424",
+    "repo": "https://github.com/MapleRen/JSBox",
+    "apps": [
+        {
+            "id": "tileRPG",
+            "name": "游戏崩坏",
+            "keys":[],
+            "settings": [
+                {
+                    "id": "tileRPG_setting",
+                    "name": "设置",
+                    "val": "[]",
+                    "type": "textarea",
+                    "rows": 5
+                },
+                {
+                    "id":"tileRPG_character",
+                    "name": "角色信息",
+                    "type": "textarea",
+                    "val":"[]",
+                    "rows": 5,
+                    "autoGrow": true
+                },
+                {
+                    "id":"tileRPG_character_skill",
+                    "name": "角色技能信息",
+                    "type": "textarea",
+                    "val":"[]",
+                    "rows": 5,
+                    "autoGrow": true
+                }
+            ],
+            "author": "@Ren",
+            "repo": "https://github.com/MapleRen/JSBox",
+            "icons": [
+                "https://raw.githubusercontent.com/MapleRen/MapleStoryM-language/master/Kor/QuantumultX/icon.png",
+                "https://raw.githubusercontent.com/MapleRen/MapleStoryM-language/master/Kor/QuantumultX/icon.png"
+            ]
+        }
+    ]
+}
