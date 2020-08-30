@@ -1,4 +1,4 @@
-const isUpperVersion = ($request.url.indexOf('UpperVersion') > -1) && ($request.url.indexOf('9295') > -1);
+const isUpperVersion = $request.url.indexOf('UpperVersion') > -1;
 const prefix = "tileRPG_";
 
 function fileJudge(){
@@ -23,13 +23,18 @@ function modifyData(data,mod,key){
 
 if(isUpperVersion){
     $notify("TileRPG", "", "文件重定向");
-    var mStatus = "HTTP/1.1 302 Found";
-    var mHeaders = {"Location": $request.url.replace('9295','0')};
-    var mResponse = {
-        status:mStatus,
-        headers:mHeaders
+    if($request.url.indexOf('9295') > -1){
+        var mStatus = "HTTP/1.1 302 Found";
+        var mHeaders = {"Location": $request.url.replace('9295','0')};
+        var mResponse = {
+            status:mStatus,
+            headers:mHeaders
+        }
+        $done(mResponse);
+    }else{
+        $done();
     }
-    $done(mResponse);
+    
 }else{
     var body = JSON.parse($response.body);
     var type = fileJudge();
