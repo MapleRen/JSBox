@@ -20,18 +20,20 @@ function modifyData(data,mod,key){
         console.log(obj)
         Object.assign(obj,item)
     }
+
 }
 
 if(isUpperVersion){
-   
-    if($request.url.indexOf('9295') > -1){
+     var version = $prefs.valueForKey('tileRPG_version');
+    if($request.url.indexOf(`${version}?`) > -1){
         $notify("TileRPG", "", "文件重定向");
         var mStatus = "HTTP/1.1 302 Found";
-        var mHeaders = {"Location": $request.url.replace(/9295/g,"0")};
+        var mHeaders = {"Location": $request.url.replace(version,"0")};
         var mResponse = {
             status:mStatus,
             headers:mHeaders
         }
+
         $done(mResponse);
     }else{
         $done({});

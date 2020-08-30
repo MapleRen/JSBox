@@ -11,6 +11,13 @@
             "keys":[],
             "settings": [
                 {
+                    "id": "tileRPG_version",
+                    "name": "版本号",
+                    "val": "",
+                    "type": "text",
+                    "desc": "版本号"
+                },
+                {
                     "id": "tileRPG_setting",
                     "name": "设置",
                     "val": "[]",
