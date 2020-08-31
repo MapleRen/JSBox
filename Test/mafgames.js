@@ -30,10 +30,10 @@ function modifyData(data,mod,key){
     // }
 
 }
-$notify("TileRPG", "",'Loading...')
 if(isUpperVersion){
      var version = $prefs.valueForKey('tileRPG_version');
-    if($request.url.indexOf(`${version}?`) > -1){
+     //$request.url.indexOf(`${version}?`) > -1
+    if(true){
         $notify("TileRPG", "", "文件重定向");
         var mStatus = "HTTP/1.1 302 Found";
         var re = new RegExp(version,"g");
