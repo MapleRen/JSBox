@@ -49,9 +49,13 @@ if(isUpperVersion){
     var versionRequest = {
         url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
     }
+    $notify("TileRPG", "",'正在加载文件列表')
     $task.fetch(versionRequest).then(response=>{
-        $notify("TileRPG", "", "全配置加载完毕");
+        $notify("TileRPG", "", "文件列表加载完毕");
         $done(response.body);
+    }, reason => {
+        $notify("TileRPG", "",reason.error)
+        $done({});
     })
     
 }else{
