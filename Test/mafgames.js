@@ -47,6 +47,7 @@ if(isUpperVersion){
     // }else{
     //     $done({});
     // }
+    $notify("TileRPG", "",'正在加载文件列表1')
     var versionRequest = {
         url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
     }
