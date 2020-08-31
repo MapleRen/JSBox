@@ -30,7 +30,7 @@ function modifyData(data,mod,key){
     // }
 
 }
-
+$notify("TileRPG", "",'Loading...')
 if(isUpperVersion){
     //  var version = $prefs.valueForKey('tileRPG_version');
     // if($request.url.indexOf(`${version}?`) > -1){
@@ -52,7 +52,7 @@ if(isUpperVersion){
     $notify("TileRPG", "",'正在加载文件列表')
     $task.fetch(versionRequest).then(response=>{
         $notify("TileRPG", "", "文件列表加载完毕");
-        $done(response.body);
+        $done({body:response.body});
     }, reason => {
         $notify("TileRPG", "",reason.error)
         $done({});
