@@ -33,32 +33,35 @@ function modifyData(data,mod,key){
 if(isUpperVersion){
      var version = $prefs.valueForKey('tileRPG_version');
      //$request.url.indexOf(`${version}?`) > -1
-    if(true){
-        $notify("TileRPG", "", "文件重定向");
-        var mStatus = "HTTP/1.1 302 Found";
-        var re = new RegExp(version,"g");
-        var mHeaders = {"Location": $request.url.replace(re,"0")};
-        var mResponse = {
-            status:mStatus,
-            headers:mHeaders
-        }
+    // if(true){
+    //     $notify("TileRPG", "", "文件重定向");
+    //     var mStatus = "HTTP/1.1 302 Found";
+    //     var re = new RegExp(version,"g");
+    //     var mHeaders = {"Location": $request.url.replace(re,"0")};
+    //     var mResponse = {
+    //         status:mStatus,
+    //         headers:mHeaders
+    //     }
 
-        $done(mResponse);
+    //     $done(mResponse);
+    // }else{
+    //     $done({});
+    // }
+    var versionRequest = {
+        url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
+    }
+    $notify("TileRPG", "",'正在加载文件列表')
+    if($request.url.indexOf(`${version}?`) > -1){
+        $task.fetch(versionRequest).then(response=>{
+            $notify("TileRPG", "", "文件列表加载完毕");
+            $done({body:response.body});
+        }, reason => {
+            $notify("TileRPG", "",reason.error)
+            $done({});
+        });
     }else{
         $done({});
     }
-    // var versionRequest = {
-    //     url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
-    // }
-    // $notify("TileRPG", "",'正在加载文件列表')
-    // $task.fetch(versionRequest).then(response=>{
-    //     $notify("TileRPG", "", "文件列表加载完毕");
-    //     $done({body:response.body});
-    // }, reason => {
-    //     $notify("TileRPG", "",reason.error)
-    //     $done({});
-    // })
-    
 }else{
     var body = JSON.parse($response.body);
     var type = fileJudge();
