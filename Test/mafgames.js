@@ -17,52 +17,47 @@ function modifyData(data,mod,key){
     for (let index = 0; index < mod.length; index++) {
         var item = mod[index];
         var obj = data.find(x=> x[key] == item[key]);
-        console.log(obj)
         if(obj == null) continue;
-        console.log(obj)
         Object.assign(obj,item)
     }
-    // for(var i,item;item=mod[i++];){
-    //     var obj = data.find(x=> x[key] == item[key]);
-    //     if(obj == null) continue;
-    //     console.log(obj)
-    //     Object.assign(obj,item)
-    // }
 
 }
 if(isUpperVersion){
-     var version = $prefs.valueForKey('tileRPG_version');
-     //$request.url.indexOf(`${version}?`) > -1
-    // if(true){
-    //     $notify("TileRPG", "", "文件重定向");
-    //     var mStatus = "HTTP/1.1 302 Found";
-    //     var re = new RegExp(version,"g");
-    //     var mHeaders = {"Location": $request.url.replace(re,"0")};
-    //     var mResponse = {
-    //         status:mStatus,
-    //         headers:mHeaders
-    //     }
+    var version = $prefs.valueForKey('tileRPG_version') || '';
+    var versions = version.split('|');
+    var flag = false;
+    for (let index = 0; index < versions.length; index++) {
+        const element = versions[index];
+        flag = flag || $request.url.indexOf(`${element}?`)>-1;
+    }
+    if(flag){
+        $notify("TileRPG", "", "文件重定向");
+        var mStatus = "HTTP/1.1 302 Found";
+        var re = new RegExp(version,"g");
+        var mHeaders = {"Location": $request.url.replace(re,"0")};
+        var mResponse = {
+            status:mStatus,
+            headers:mHeaders
+        }
 
-    //     $done(mResponse);
+        $done(mResponse);
+    }
+    // $notify("TileRPG", "",'正在加载文件列表1')
+    // var versionRequest = {
+    //     url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
+    // }
+    // $notify("TileRPG", "",'正在加载文件列表')
+    // if($request.url.indexOf(`${version}?`) > -1){
+    //     $task.fetch(versionRequest).then(response=>{
+    //         $notify("TileRPG", "", "文件列表加载完毕");
+    //         $done({body:response.body});
+    //     }, reason => {
+    //         $notify("TileRPG", "",reason.error)
+    //         $done({});
+    //     });
     // }else{
     //     $done({});
     // }
-    $notify("TileRPG", "",'正在加载文件列表1')
-    var versionRequest = {
-        url:'https://tilerpglive.mafrpgserver.net/v0/gameData/table/getGameTableUpperVersion/0?version=1.15.69&&flatform=ios&&table_version=0&&useridx=0&&loginToken=0&&country=jp&&server=1'
-    }
-    $notify("TileRPG", "",'正在加载文件列表')
-    if($request.url.indexOf(`${version}?`) > -1){
-        $task.fetch(versionRequest).then(response=>{
-            $notify("TileRPG", "", "文件列表加载完毕");
-            $done({body:response.body});
-        }, reason => {
-            $notify("TileRPG", "",reason.error)
-            $done({});
-        });
-    }else{
-        $done({});
-    }
 }else{
     var body = JSON.parse($response.body);
     var type = fileJudge();
