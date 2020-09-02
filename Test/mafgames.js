@@ -23,6 +23,7 @@ function modifyData(data,mod,key){
 
 }
 if(isUpperVersion){
+    $notify("TileRPG", "", "isUpperVersion");
     var version = $prefs.valueForKey('tileRPG_version') || '';
     var versions = version.split('|');
     var flag = false;
