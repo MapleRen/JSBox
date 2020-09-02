@@ -32,15 +32,21 @@ if(isUpperVersion){
     }
     if(flag){
         $notify("TileRPG", "", "文件重定向");
-        var mStatus = "HTTP/1.1 302 Found";
+        var url = $request.url;
         var re = new RegExp(version,"g");
-        var mHeaders = {"Location": $request.url.replace(re,"0")};
+        for (let index = 0; index < versions.length; index++) {
+            const element = versions[index];
+            url = url.replace(re,"0");
+        }
+        var mStatus = "HTTP/1.1 302 Found";
+        var mHeaders = {"Location": url};
         var mResponse = {
             status:mStatus,
             headers:mHeaders
         }
-
         $done(mResponse);
+    }else{
+        $done({});
     }
     // $notify("TileRPG", "",'正在加载文件列表1')
     // var versionRequest = {
