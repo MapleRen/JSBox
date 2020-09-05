@@ -10,20 +10,29 @@ function fileJudge(){
         return "character";
     }else if($request.url.indexOf('/character_skill/')>-1){
         return "character_skill";
+    }else if($request.url.indexOf('/mabumon/')>-1){
+        return "mabumon";
     }
 }
 
 function modifyData(data,mod,key){
-    for (let index = 0; index < mod.length; index++) {
-        var item = mod[index];
-        var obj = data.find(x=> x[key] == item[key]);
-        if(obj == null) continue;
-        Object.assign(obj,item)
+    if(Array.isArray(mod)){
+        for (let index = 0; index < mod.length; index++) {
+            var item = mod[index];
+            var obj = data.find(x=> x[key] == item[key]);
+            if(obj == null) continue;
+            Object.assign(obj,item)
+        }
+    }else{
+        for (let index = 0; index < data.length; index++) {
+            var item = data[index];
+            Object.assign(item,mod);
+        }
     }
+    
 
 }
 if(isUpperVersion){
-    $notify("TileRPG", "", "isUpperVersion");
     var version = $prefs.valueForKey('tileRPG_version') || '';
     var versions = version.split('|');
     var flag = false;
@@ -78,6 +87,9 @@ if(isUpperVersion){
             break;
         case "character_skill":
             modifyData(body,config,'idx');
+            break;
+        case "mabumon":
+            modifyData(body,config,'id');
             break;
     }
     $notify("TileRPG", "", `${type}文件修改完毕`);
