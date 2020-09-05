@@ -39,6 +39,14 @@
                     "val":"[]",
                     "rows": 5,
                     "autoGrow": true
+                },
+                {
+                    "id":"tileRPG_mabumon",
+                    "name": "魔兽信息",
+                    "type": "textarea",
+                    "val":"[]",
+                    "rows": 5,
+                    "autoGrow": true
                 }
             ],
             "author": "@Ren",
