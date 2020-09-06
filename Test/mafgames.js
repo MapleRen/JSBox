@@ -19,9 +19,12 @@ function modifyData(data,mod,key){
     if(Array.isArray(mod)){
         for (let index = 0; index < mod.length; index++) {
             var item = mod[index];
-            var obj = data.find(x=> x[key] == item[key]);
-            if(obj == null) continue;
-            Object.assign(obj,item)
+            var objs = data.filter(x=> x[key] == item[key]);
+            if(objs.length == 0) continue;
+            for (let j = 0,temp; temp=objs[j++];) {
+                Object.assign(temp,item);
+            }
+            
         }
     }else{
         for (let index = 0; index < data.length; index++) {
