@@ -56,13 +56,33 @@
                 "https://raw.githubusercontent.com/MapleRen/MapleStoryM-language/master/Kor/QuantumultX/icon.png"
             ]
         },
-		{
+	{
             "id": "renDJTree",
             "name": "dj树",
             "keys":[],
             "settings": [
                 {
                     "id": "ren_learningTree",
+                    "name": "缓存值",
+                    "val": "",
+                    "type": "textarea",
+                    "desc": "缓存值"
+                }
+            ],
+            "author": "@Ren",
+            "repo": "https://github.com/MapleRen/JSBox",
+            "icons": [
+                "https://raw.githubusercontent.com/MapleRen/MapleStoryM-language/master/Kor/QuantumultX/icon.png",
+                "https://raw.githubusercontent.com/MapleRen/MapleStoryM-language/master/Kor/QuantumultX/icon.png"
+            ]
+        },
+	{
+            "id": "renDSJS",
+            "name": "dsjs",
+            "keys":[],
+            "settings": [
+                {
+                    "id": "ren_dsjs",
                     "name": "缓存值",
                     "val": "",
                     "type": "textarea",
